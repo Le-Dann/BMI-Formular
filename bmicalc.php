@@ -9,25 +9,25 @@
 </head>
 <body>
 <?php
-include "helpers.inc.php";
-include "bmi.inc.php";
-$errors = [];
+include "helpers.inc.php"; //Enthält Funktionen, die Ausgaben vereinfachen
+include "bmi.inc.php"; //BMI Klasse
+$errors = []; //Array von Fehlern vom Benutzer bei der Eingabe
 
- $gewicht = postAndTrim('gewicht');
+ $gewicht = postAndTrim('gewicht'); //Ruft den Funktion postandtrim von helpers.inc.php
  $grosse = postAndTrim('grosse');
  $geschlecht = post('geschlecht');
 
- if($gewicht == "")
+ if($gewicht == "") 
  {
-     $errors[] = "Bitte geben Sie Ihre Gewicht ein";
+     $errors[] = "Bitte geben Sie Ihre Gewicht ein"; //Dieses error wird ausgegeben wenn kein Wert für Gewicht eingegeben wird
  }
  
  if($grosse == "")
  {
-     $errors[] = "Bitte geben Sie Ihre Grosse ein";
+     $errors[] = "Bitte geben Sie Ihre Grosse ein";  //Dieses error wird ausgegeben wenn kein Wert für Grosse eingegeben wird
  }
 
- if (count($errors) === 0)
+ if (count($errors) === 0) // Nur wenn das Formular komplett ausgefüllt ist, wird das BMI berechnet
 {
      $myBMI = new BMI($grosse,$gewicht,$geschlecht);
 
@@ -37,7 +37,7 @@ $errors = [];
 }
 else
 {
-    foreach($errors as $error)
+    foreach($errors as $error) //Sonst zeigt es jeder Fehler 
     {
         echo $error."<br>";
     }
